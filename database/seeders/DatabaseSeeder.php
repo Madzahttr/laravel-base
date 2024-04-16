@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,5 +22,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $user->markEmailAsVerified();
+
+        $role = Role::where('name', 'admin')->first();
+        $user->roles()->attach([$role->id]);
     }
 }
