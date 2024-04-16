@@ -190,9 +190,26 @@ const showingNavigationDropdown = ref(false);
             </div>
         </nav>
 
+        <div v-if="$page.props.mustVerifyEmail && $page.props.auth.user.email_verified_at === null">
+            <div class="bg-red-700 text-white text-center" v-show="$page.props.status != 'verification-link-sent'">
+                Your email address is unverified.
+                <Link
+                    :href="route('verification.send')"
+                    method="post"
+                    as="button"
+                    class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                >
+                    Click here to re-send the verification email.
+                </Link>
+            </div>
+            <div class="bg-green-500 text-white text-center" v-show="$page.props.status === 'verification-link-sent'">
+                A new verification link has been sent to your email address.
+            </div>
+        </div>
+
         <!-- Page Heading -->
         <header class="bg-white dark:bg-gray-800 shadow" v-if="$slots.header">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-8xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 <slot name="header" />
             </div>
         </header>
