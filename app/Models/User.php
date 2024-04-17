@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -53,9 +53,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
-    // has many permissions through roles
-    public function permissions()
+    public function roleNames(): Collection
     {
-        return $this->roles()->with('permissions');
+        return $this->roles->map(function ($role) {
+            return $role->name;
+        });
+    }
+
+    public function permissions(): Collection
+    {
+        return $this->roles->map(function ($role) {
+            return $role->permissions;
+        })->flatten()->pluck('node');
     }
 }

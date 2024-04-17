@@ -40,7 +40,7 @@ const showingNavigationDropdown = ref(false);
                         </div>
                     </div>
 
-                    <div class="hidden sm:flex sm:items-center sm:ms-6" v-if="$page.props.auth.user">
+                    <div class="hidden sm:flex sm:items-center sm:ms-6" v-if="$page.props.auth">
                         <!-- Settings Dropdown -->
                         <div class="ms-3 relative">
                             <Dropdown align="right" width="48">
@@ -69,6 +69,7 @@ const showingNavigationDropdown = ref(false);
                                 </template>
 
                                 <template #content>
+                                    <DropdownLink :href="route('home')" v-if="$page.props.auth.permissions.includes('administrator')"> Admin </DropdownLink>
                                     <DropdownLink :href="route('profile.edit')"> Profile </DropdownLink>
                                     <DropdownLink :href="route('logout')" method="post" as="button">
                                         Log Out
@@ -165,7 +166,7 @@ const showingNavigationDropdown = ref(false);
                 </div>
 
                 <!-- Responsive Settings Options -->
-                <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600" v-if="$page.props.auth.user">
+                <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600" v-if="$page.props.auth">
                     <div class="px-4">
                         <div class="font-medium text-base text-gray-800 dark:text-gray-200">
                             {{ $page.props.auth.user.name }}
@@ -174,6 +175,7 @@ const showingNavigationDropdown = ref(false);
                     </div>
 
                     <div class="mt-3 space-y-1">
+                        <ResponsiveNavLink :href="route('home')" v-if="$page.props.auth.permissions.includes('administrator')"> Admin </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('logout')" method="post" as="button">
                             Log Out

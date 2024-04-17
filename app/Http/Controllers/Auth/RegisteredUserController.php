@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Inertia\Inertia;
@@ -41,6 +43,18 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $userRole = Role::where('name', 'user')->first();
+
+        $user->roles()->attach([$userRole->id]);
+
+        $roles = $user->roles;
+        $roleNames = $user->roleNames();
+        $permissions = $user->permissions();
+
+        Cache::set("user.{$user->id}.roles", $roles);
+        Cache::set("user.{$user->id}.roleNames", $roleNames);
+        Cache::set("user.{$user->id}.permissions", $permissions);
 
         event(new Registered($user));
 

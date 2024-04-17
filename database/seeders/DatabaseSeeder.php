@@ -23,7 +23,10 @@ class DatabaseSeeder extends Seeder
 
         $user->markEmailAsVerified();
 
-        $role = Role::where('name', 'admin')->first();
-        $user->roles()->attach([$role->id]);
+        $adminRole = Role::where('name', 'admin')->first();
+        $userRole = Role::where('name', 'user')->first();
+
+        $user->roles()->attach([$adminRole->id]);
+        $user->roles()->attach([$userRole->id]);
     }
 }

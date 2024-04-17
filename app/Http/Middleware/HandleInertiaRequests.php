@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -30,13 +31,28 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $user = $request->user();
+        if($user)
+        {
+            return [
+                ...parent::share($request),
+                'auth' => [
+                    'user' => $user,
+                    'roles' => Cache::get("user.{$user->id}.roles"),
+                    'rolesNames' => Cache::get("user.{$user->id}.roleNames"),
+                    'permissions' => Cache::get("user.{$user->id}.permissions"),
+                ],
+                'version' => [
+                    'laravel' => Application::VERSION,
+                    'php' => PHP_VERSION,
+                ],
+                'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+                'status' => session('status'),
+            ];
+        }
+
         return [
             ...parent::share($request),
-            'auth' => [
-                'user' => $request->user(),
-                'roles' => $request->user()->roles,
-                'permissions' => $request->user()->permissions,
-            ],
             'version' => [
                 'laravel' => Application::VERSION,
                 'php' => PHP_VERSION,
