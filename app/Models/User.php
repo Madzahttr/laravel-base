@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Log;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -65,5 +67,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->roles->map(function ($role) {
             return $role->permissions;
         })->flatten()->pluck('node');
+    }
+
+    public function hasPermission(string $permission): bool
+    {
+        return $this->permissions()->contains($permission);
     }
 }

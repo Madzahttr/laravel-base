@@ -46,8 +46,6 @@ class AuthenticatedSessionController extends Controller
         Cache::set("user.{$user->id}.roleNames", $roleNames);
         Cache::set("user.{$user->id}.permissions", $permissions);
 
-        Log::debug($user);
-
         return redirect()->intended(route('home', absolute: false));
     }
 

@@ -5,13 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class ProfileController extends Controller
+class ProfileController extends Controller implements HasMiddleware
 {
+     /**
+     * Get the middleware that should be assigned to the controller.
+     */
+    public static function middleware(): array
+    {
+        return [
+            'auth',
+        ];
+    }
+
     /**
      * Display the user's profile form.
      */
