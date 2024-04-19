@@ -20,22 +20,20 @@ const showingNavigationDropdown = ref(false);
                         <!-- Logo -->
                         <div class="shrink-0 flex items-center">
                             <Link :href="route('home')">
-                                <ApplicationLogo
-                                    class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200"
-                                />
+                                <ApplicationLogo class="block h-10 w-auto fill-current text-gray-800 dark:text-gray-200" />
                             </Link>
                         </div>
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <NavLink :href="route('home')" :active="route().current('link2')">
-                                link2
+                            <NavLink :href="route('home')" :active="route().current('link1')">
+                                Link1
                             </NavLink>
                             <NavLink :href="route('home')" :active="route().current('link2')">
-                                link2
+                                Link2
                             </NavLink>
                             <NavLink :href="route('home')" :active="route().current('link3')">
-                                link3
+                                Link3
                             </NavLink>
                         </div>
                     </div>
@@ -48,7 +46,7 @@ const showingNavigationDropdown = ref(false);
                                     <span class="inline-flex rounded-md">
                                         <button
                                             type="button"
-                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
+                                            class="inline-flex items-center px-3 py-2 border border-transparent h-10 text-lg leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
                                         >
                                             {{ $page.props.auth.user.name }}
 

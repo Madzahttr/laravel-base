@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Config;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -46,6 +47,7 @@ class HandleInertiaRequests extends Middleware
                     'laravel' => Application::VERSION,
                     'php' => PHP_VERSION,
                 ],
+                'appName' => Config::get('app.name'),
                 'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
                 'status' => session('status'),
             ];

@@ -9,7 +9,7 @@ import { Head } from '@inertiajs/vue3';
     <AdminLayout>
             <div class="w-full">
                 <div class="bg-white dark:bg-gray-800 overflow-hidden">
-                    <div class="p-6 text-gray-900 dark:text-gray-100">Dashboard</div>
+                    <div class="p-6 text-gray-900 dark:text-gray-100">Settings</div>
                 </div>
             </div>
     </AdminLayout>

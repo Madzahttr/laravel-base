@@ -8,7 +8,7 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class DashboardController extends Controller implements HasMiddleware
+class UsersController extends Controller implements HasMiddleware
 {
      /**
      * Get the middleware that should be assigned to the controller.
@@ -22,10 +22,10 @@ class DashboardController extends Controller implements HasMiddleware
     }
 
      /**
-     * Display Dashboard Index
+     * Display Users Index
      */
     public function index(Request $request): Response
     {
-        return Inertia::render('Admin/Dashboard');
+        return Inertia::render('Admin/Users');
     }
 }
