@@ -28,7 +28,7 @@ defineProps({
                         </thead>
                         <tbody>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" v-for="role in roles">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><a :href="`/admin/roles/edit/${role.id}`">{{ role.id }}</a></th>
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"><a :href="route('admin.roles.edit', role.id)">{{ role.id }}</a></th>
                                 <td class="px-6 py-4">{{ role.name }}</td>
                             </tr>
                         </tbody>

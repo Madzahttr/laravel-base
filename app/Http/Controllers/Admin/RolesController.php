@@ -39,7 +39,7 @@ class RolesController extends Controller implements HasMiddleware
     {
         $role = Role::where('id', $id)->first();
 
-        if(!$role) return redirect()->route('admin.roles');
+        if(!$role) return redirect()->route('admin.roles.show');
 
         return Inertia::render('Admin/Roles/Edit', [
             'role' => $role,

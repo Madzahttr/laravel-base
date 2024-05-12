@@ -102,11 +102,11 @@ const showingNavigationDropdown = ref(true);
                     </AdminNavLink>
                 </ul>
                 <ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-                    <AdminNavLink :href="route('admin.users')" :active="route().current('admin.users')">
+                    <AdminNavLink :href="route('admin.users.show')" :active="route().current('admin.users.*')">
                         <FontAwesomeIcon icon="users" />
                         <span class="flex-1 ms-3 whitespace-nowrap">Users</span>
                     </AdminNavLink>
-                    <AdminNavLink :href="route('admin.roles')" :active="route().current('admin.roles')">
+                    <AdminNavLink :href="route('admin.roles.show')" :active="route().current('admin.roles.*')">
                         <FontAwesomeIcon icon="user-shield" />
                         <span class="flex-1 ms-3 whitespace-nowrap">roles</span>
                     </AdminNavLink>
