@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Inertia\Inertia;
@@ -22,10 +23,26 @@ class RolesController extends Controller implements HasMiddleware
     }
 
      /**
-     * Display Roles Index
+     * Display Roles
      */
-    public function index(Request $request): Response
+    public function show(Request $request): Response
     {
-        return Inertia::render('Admin/Roles');
+        return Inertia::render('Admin/Roles/Show', [
+            'roles' => Role::all(),
+        ]);
+    }
+
+     /**
+     * Edit role
+     */
+    public function edit(Request $request, string $id)
+    {
+        $role = Role::where('id', $id)->first();
+
+        if(!$role) return redirect()->route('admin.roles');
+
+        return Inertia::render('Admin/Roles/Edit', [
+            'role' => $role,
+        ]);
     }
 }

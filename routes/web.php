@@ -18,7 +18,11 @@ Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.
 
 Route::get('/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/settings', [SettingsController::class, 'index'])->name('admin.settings');
-Route::get('/admin/users', [UsersController::class, 'index'])->name('admin.users');
-Route::get('/admin/roles', [RolesController::class, 'index'])->name('admin.roles');
+
+Route::get('/admin/users', [UsersController::class, 'show'])->name('admin.users');
+Route::get('/admin/users/edit/{id}', [UsersController::class, 'edit'])->name('admin.users.edit');
+
+Route::get('/admin/roles', [RolesController::class, 'show'])->name('admin.roles');
+Route::get('/admin/roles/edit/{id}', [RolesController::class, 'edit'])->name('admin.roles.edit');
 
 require __DIR__.'/auth.php';
