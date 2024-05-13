@@ -16,15 +16,19 @@ defineProps({
     <Head title="Admin Dashboard" />
 
     <AdminLayout>
-            <div class="w-full">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-                    <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                        <UpdateUserInfoForm class="max-w-xl" />
-                    </div>
-                    <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                        <DeleteUserForm class="max-w-xl" />
-                    </div>
+        <template #title>Edit User</template>
+        <template #subtitle>Edit user information</template>
+        <template #path>Admin > Users > Edit</template>
+
+        <div class="w-full">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                    <UpdateUserInfoForm class="max-w-xl" />
+                </div>
+                <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                    <DeleteUserForm class="max-w-xl" />
                 </div>
             </div>
+        </div>
     </AdminLayout>
 </template>

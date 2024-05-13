@@ -17,7 +17,6 @@ const deleteUser = () => {
     form.delete(route('admin.users.destroy', usePage().props.user.id), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
-        onError: () => passwordInput.value.focus(),
         onFinish: () => form.reset(),
     });
 };

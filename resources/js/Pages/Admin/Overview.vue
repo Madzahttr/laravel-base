@@ -7,10 +7,10 @@ import { Head } from '@inertiajs/vue3';
     <Head title="Admin Dashboard" />
 
     <AdminLayout>
-        <template #title>Settings</template>
-        <template #subtitle>Adjust site settings</template>
-        <template #path>Admin > Settings</template>
-        
+        <template #title>Overview</template>
+        <template #subtitle>A quick glance</template>
+        <template #path>Admin > Overview</template>
+
         <div class="w-full">
             
         </div>

@@ -92,9 +92,9 @@ const showingNavigationDropdown = ref(true);
         <aside :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform  bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
             <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                 <ul class="space-y-2 font-medium">
-                    <AdminNavLink :href="route('admin.dashboard')" :active="route().current('admin.dashboard')">
+                    <AdminNavLink :href="route('admin.overview')" :active="route().current('admin.overview')">
                         <FontAwesomeIcon icon="house" />
-                        <span class="ms-3">Dashboard</span>
+                        <span class="ms-3">Overview</span>
                     </AdminNavLink>
                     <AdminNavLink :href="route('admin.settings')" :active="route().current('admin.settings')">
                         <FontAwesomeIcon icon="screwdriver-wrench" />
@@ -114,7 +114,16 @@ const showingNavigationDropdown = ref(true);
             </div>
         </aside>
 
-        <main class="fixed top-16 xl:left-64 xl:w-[calc(100vw_-_16rem)] left-0 w-full">
+        <main class="fixed top-16 xl:left-64 xl:w-[calc(100vw_-_16rem)] left-0 w-full dark:text-white">
+            <div class="flex w-full px-8 py-2 mt-2">
+                <div class="flex-auto">
+                    <span class="text-3xl pr-2 text-gray-900 dark:text-gray-50"><slot name="title" /></span>
+                    <span class="text-lg text-gray-700 dark:text-gray-400"><slot name="subtitle" /></span>
+                </div>
+                <div class="flex-auto text-end self-center text-gray-800 dark:text-gray-500">
+                    <slot name="path" />
+                </div>
+            </div>
             <slot />
         </main>
     </div>
