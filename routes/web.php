@@ -21,6 +21,8 @@ Route::get('/admin/settings', [SettingsController::class, 'index'])->name('admin
 
 Route::get('/admin/users', [UsersController::class, 'show'])->name('admin.users.show');
 Route::get('/admin/users/edit/{id}', [UsersController::class, 'edit'])->name('admin.users.edit');
+Route::patch('/admin/user/edit/{id}', [UsersController::class, 'update'])->name('admin.users.update');
+Route::delete('/admin/user/edit/{id}', [UsersController::class, 'destroy'])->name('admin.users.destroy');
 
 Route::get('/admin/roles', [RolesController::class, 'show'])->name('admin.roles.show');
 Route::get('/admin/roles/edit/{id}', [RolesController::class, 'edit'])->name('admin.roles.edit');
