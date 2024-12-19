@@ -13,7 +13,11 @@ return new class extends Migration
     public function up(): void
     {
         Permission::create(['node' => 'administrator']);
-        Permission::create(['node' => 'placeholder']);
+        Permission::create(['node' => 'placeholder1']);
+        Permission::create(['node' => 'placeholder2']);
+        Permission::create(['node' => 'placeholder3']);
+        Permission::create(['node' => 'placeholder4']);
+        Permission::create(['node' => 'placeholder5']);
     }
 
     /**

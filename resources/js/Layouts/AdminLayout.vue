@@ -114,7 +114,7 @@ const showingNavigationDropdown = ref(true);
             </div>
         </aside>
 
-        <main class="fixed top-16 xl:left-64 xl:w-[calc(100vw_-_16rem)] left-0 w-full dark:text-white">
+        <main class="fixed top-16 xl:left-64 xl:w-[calc(100vw_-_16rem)] left-0 w-full h-[calc(100vh_-_4rem)] dark:text-white">
             <div class="flex w-full px-8 py-2 mt-2">
                 <div class="flex-auto">
                     <span class="text-3xl pr-2 text-gray-900 dark:text-gray-50"><slot name="title" /></span>
@@ -124,7 +124,19 @@ const showingNavigationDropdown = ref(true);
                     <slot name="path" />
                 </div>
             </div>
-            <slot />
+            <div class="h-[calc(100vh_-_4rem_-_112px)] overflow-y-auto">
+                <slot />
+            </div>
+            <div class="mt-auto w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-2">
+                <div class="flex px-2 py-1 mt-1">
+                    <div class="flex-auto">
+                        &copy; {{ $page.props.appName }} 2024
+                    </div>
+                    <div class="flex-auto text-end self-center text-sm text-black dark:text-white/70">
+                        Laravel v{{ $page.props.version.laravel }} (PHP v{{ $page.props.version.php }})
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </template>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserDeleteRequest;
 use App\Http\Requests\Admin\UserInfoUpdateRequest;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
@@ -68,9 +69,9 @@ class UsersController extends Controller implements HasMiddleware
     }
 
      /**
-     * Delete user
+     * Delete User
      */
-    public function destroy(Request $request, string $id): RedirectResponse
+    public function destroy(UserDeleteRequest $request, string $id): RedirectResponse
     {
         $user = User::where('id', $id)->first();
         if(!$user) return Redirect::route('admin.users.edit', $id);

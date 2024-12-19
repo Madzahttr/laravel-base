@@ -22,5 +22,7 @@ Route::name('admin.')->prefix('admin')->group(function() {
     Route::name('roles.')->prefix('roles')->controller(RolesController::class)->group(function() {
         Route::get('/', 'show')->name('show');
         Route::get('/edit/{id}', 'edit')->name('edit');
+        Route::patch('/edit/{id}', 'update')->name('update');
+        Route::delete('/edit/{id}', 'destroy')->name('destroy');
     });
 });
