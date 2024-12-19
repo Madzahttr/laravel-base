@@ -129,7 +129,7 @@ const showingNavigationDropdown = ref(true);
             </div>
             <div class="mt-auto w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-2">
                 <div class="flex px-2 py-1 mt-1">
-                    <div class="flex-auto">
+                    <div class="flex-auto text-black dark:text-white/80">
                         &copy; {{ $page.props.appName }} 2024
                     </div>
                     <div class="flex-auto text-end self-center text-sm text-black dark:text-white/70">
