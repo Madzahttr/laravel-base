@@ -5,16 +5,16 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
-const confirmingRoleDeletion = ref(false);
+const confirmingUserDeletion = ref(false);
 
 const form = useForm({});
 
-const confirmRoleDeletion = () => {
-    confirmingRoleDeletion.value = true;
+const confirmUserDeletion = () => {
+    confirmingUserDeletion.value = true;
 };
 
-const deleteRole = () => {
-    form.delete(route('admin.roles.destroy', usePage().props.role.id), {
+const deleteUser = () => {
+    form.delete(route('admin.users.destroy', usePage().props.user.id), {
         preserveScroll: true,
         onSuccess: () => closeModal(),
         onFinish: () => form.reset(),
@@ -22,30 +22,23 @@ const deleteRole = () => {
 };
 
 const closeModal = () => {
-    confirmingRoleDeletion.value = false;
+    confirmingUserDeletion.value = false;
 };
 </script>
 
 <template>
-    <section class="space-y-6">
-        <header>
-            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">Delete Role</h2>
+    <section>
+        <DangerButton @click="confirmUserDeletion">Delete User</DangerButton>
 
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Once this role is deleted, all of its resources and data will be permanently deleted.
-            </p>
-        </header>
-
-        <DangerButton @click="confirmRoleDeletion">Delete Role</DangerButton>
-
-        <Modal :show="confirmingRoleDeletion" @close="closeModal">
+        <Modal :show="confirmingUserDeletion" @close="closeModal">
             <div class="p-6">
                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                    Are you sure you want to delete this Role?
+                    Are you sure you want to delete this User?
                 </h2>
 
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                    Once this role is deleted, all of its resources and data will be permanently deleted.
+                    Once this user is deleted, all of its resources and data will be permanently deleted. Please 
+                    confirm you would like to permanently delete this User.
                 </p>
 
                 <div class="mt-6 flex justify-end">
@@ -55,9 +48,9 @@ const closeModal = () => {
                         class="ms-3"
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
-                        @click="deleteRole"
+                        @click="deleteUser"
                     >
-                        Delete Role
+                        Delete Account
                     </DangerButton>
                 </div>
             </div>

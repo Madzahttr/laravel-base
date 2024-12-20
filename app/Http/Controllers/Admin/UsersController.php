@@ -45,6 +45,7 @@ class UsersController extends Controller implements HasMiddleware
         $user = User::where('id', $id)->first();
 
         if(!$user) return redirect()->route('admin.users.show');
+        $user->roles;
 
         return Inertia::render('Admin/Users/Edit', [
             'user' => $user,
@@ -75,6 +76,8 @@ class UsersController extends Controller implements HasMiddleware
     {
         $user = User::where('id', $id)->first();
         if(!$user) return Redirect::route('admin.users.edit', $id);
+
+        $user->roles()->detach();
 
         $user->delete();
 

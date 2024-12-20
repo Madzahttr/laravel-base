@@ -13,16 +13,13 @@ const form = useForm({
 </script>
 
 <template>
-    <section>
-        <header>
-            <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">Role Information</h2>
-
-            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                Update Role's profile information.
-            </p>
-        </header>
-
-        <form @submit.prevent="form.patch(route('admin.roles.update', $page.props.role.id))" class="mt-6 space-y-6">
+    <section class="flex-grow lg:basis-1/2 basis-full lg:pr-4 pt-4">
+        <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 border-t-4 border-blue-600">
+            <div class="items-center justify-between p-4">
+                <span class="mr-3 font-semibold dark:text-white text-xl">Information</span>
+            </div>
+        </div>
+        <form @submit.prevent="form.patch(route('admin.roles.update', $page.props.role.id))" class="p-6 space-y-6 bg-white dark:bg-gray-800">
             <div>
                 <InputLabel for="name" value="Name" />
 

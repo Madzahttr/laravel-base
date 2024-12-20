@@ -74,6 +74,9 @@ class RolesController extends Controller implements HasMiddleware
         $role = Role::where('id', $id)->first();
         if(!$role) return Redirect::route('admin.roles.edit', $id);
 
+        $role->users()->detach();
+        $role->permissions()->detach();
+
         $role->delete();
 
         return Redirect::route('admin.roles.show');
