@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -60,7 +60,16 @@ class UsersController extends Controller implements HasMiddleware
         $user = User::where('id', $id)->first();
         if(!$user) return Redirect::route('admin.users.edit', $id);
 
-        $user->fill($request->validated());
+        $validated = $request->validated();
+
+        if($validated['password'] != null)
+        {
+            $validated['password'] = Hash::make($validated['password']);
+        } else {
+            unset($validated['password']);
+        }
+
+        $user->fill($validated);
 
         if($user->isDirty('email')) $user->email_verified_at = null;
 
